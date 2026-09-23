@@ -1,9 +1,10 @@
 body{
+    font-family:'Roboto', sans-serif;
     margin:0;
     padding:0;
     display:grid;
     height:100vh;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 10fr;
     grid-template-areas:
     "sidebar    header"
@@ -41,7 +42,7 @@ body{
         width:30px;
         height:30px;
     }
-    }
+}
 
 
 /* SIDEBAR */
@@ -102,18 +103,23 @@ header{
 main{
     grid-area: main;
     display:grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3fr 1fr;
+    gap:10px;
     grid-template-areas:
     "projects   announcements"
     "projects   trending";
 }
 
+.section-header, .card>*, .announcements>div>*{
+    margin:0;
+}
+
 /* MAIN - PROJECTS */
-.projects{
+.projects-section{
     grid-area: projects;
 }
 
-.projects .cards{
+.projects{
     display:grid;
     gap:10px;
     grid-template-columns: 1fr 1fr 1fr;
@@ -121,16 +127,16 @@ main{
 
 
 /* MAIN - ANNOUNCEMENTS */
-.announcements{
+.announcements-section{
     grid-area:announcements;
 }
 
-.announcements>div{
+.announcements{
     display:grid;
 }
 
 /* MAIN - TRENDING */
-.trending{
+.trending-section{
     grid-area:trending;
 }
 
@@ -141,17 +147,16 @@ main{
     grid-template-areas: 
     "icon   username"
     "icon   desc";
-    align-items: center;
 }
 .trending-user .placeholderimg{
     grid-area: icon;
+    align-self:center;
 }
 .trending-user .username{
     grid-area: username;
+    align-self:start;
 }
 .trending-user .user-desc{
     grid-area: desc;
-}
-.trending-user p{
-    align-items: center;
+    align-self:end;
 }
