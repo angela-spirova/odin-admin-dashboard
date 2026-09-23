@@ -1,3 +1,11 @@
+:root{
+    --primary-clr: white;
+    --secondary-clr:#1992D4;
+    --tertiary-clr:#F0B429;
+    --bg-clr:#E2E8F0;
+    --txt-light-clr:#595959;
+}
+
 body{
     font-family:'Roboto', sans-serif;
     margin:0;
@@ -8,53 +16,78 @@ body{
     grid-template-rows: 1fr 10fr;
     grid-template-areas:
     "sidebar    header"
-    "sidebar    main"
+    "sidebar    main";
+    font-size: 0.9em;
 }
 
+p{
+    color:var(--txt-light-clr);
+}
+header p, p.username{
+    color:black;
+}
 /* placeholders */
-body{
-    nav{
-        background-color: lightblue;
-    }
-    header{
-        background-color: lightpink;
-    }
-    main{
-        background-color: lightgreen;
-    }
-    .announcements{
-        background-color: lightyellow;
-    }
-    .trending{
-        background-color: lightblue;
-    }
-    .card{
-        background-color: white;
-    }
-    .placeholderimg{
-        background-color: red;
-        border-radius: 100%;
-        width:50px;
-        height:50px;
-    }
+.placeholderimg{
+    background-color: var(--tertiary-clr);
+    border-radius: 100%;
+    width:50px;
+    height:50px;
+}
 
-    .placeholderimg.icon{
-        width:30px;
-        height:30px;
-    }
+.placeholderimg.big{
+    width:60px;
+    height:60px;
+}
+
+.placeholderimg.icon{
+    width:30px;
+    height:30px;
+}
+
+
+nav, button{
+    background-color: var(--secondary-clr);
+    color:white;
+    font-weight: 700;
+}
+
+header, .card{
+    background-color: var(--primary-clr);
+    box-shadow: rgba(0, 0, 0, 0.192) 2px 2px 8px;
 }
 
 
 /* SIDEBAR */
 nav{
     grid-area: sidebar;
+    padding-left:30px;
+    padding-top:0.5em;
+    font-size: larger;
+}
+
+nav ul{
+    list-style-type: none;
+    padding:0;
+    display:grid;
+    gap:1em;
+    margin-bottom:2em;
+}
+
+nav a:link, nav a:visited{
+    text-decoration: none;
+    color:inherit;
 }
 
 
 /* HEADER */
 header{
     grid-area: header;
+    padding: 2em 3em;
+    display:grid;
+    gap:1.5em;
+    font-weight: bold;
 }
+
 
 .header-top, .header-btm, .header-top>div, .header-btm>div{
     display:grid;
@@ -72,12 +105,18 @@ header{
     grid-template-columns: 40px 1fr;
 }
 
+.search-bar input{
+    border:none;
+    border-radius: 20px;
+    height:30px;
+    background-color: var(--bg-clr);
+}
 /* header btm */
 .header-btm{
     grid-template-columns: 3fr 1fr;
 }
 .user-greeting{
-    grid-template-columns: 60px 5fr;
+    grid-template-columns: 70px 5fr;
     grid-template-rows: 1em 2em;
     grid-template-areas:
     "icon   small-text"
@@ -99,15 +138,30 @@ header{
     justify-content: space-around;
 }
 
+.actions button{
+    border:none;
+    border-radius: 20px;
+    padding: 0.5em 2em;
+    cursor:pointer;
+}
+
 /* MAIN */
 main{
     grid-area: main;
     display:grid;
-    grid-template-columns: 3fr 1fr;
-    gap:10px;
+    grid-template-columns: 2.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap:1em;
     grid-template-areas:
     "projects   announcements"
     "projects   trending";
+    background-color: var(--bg-clr);
+    padding:2em;
+}
+
+.card{
+    border-radius: 8px;
+    
 }
 
 .section-header, .card>*, .announcements>div>*{
@@ -119,31 +173,60 @@ main{
     grid-area: projects;
 }
 
-.projects{
+.projects-section{
     display:grid;
-    gap:10px;
-    grid-template-columns: 1fr 1fr 1fr;
+    gap:1em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5em 1fr 1fr 1fr;
+}
+.projects-section .section-header{
+    grid-area: 1 / span 2; 
 }
 
+.projects-section .card{
+    border-left:8px solid var(--tertiary-clr);
+    padding: 2em 2em 0 2em;
+    position:relative;
+}
 
+.projects-section .card .icons{
+    position:absolute;
+    bottom:1em;
+    right:1em;
+    cursor:pointer;
+}
+.announcements, .trending{
+    display:grid;
+    gap:1em;
+}
 /* MAIN - ANNOUNCEMENTS */
 .announcements-section{
     grid-area:announcements;
+    display:grid;
+    gap: 1em;
+    grid-template-rows: 1.5em 1fr;
 }
 
 .announcements{
-    display:grid;
+    padding:3em;
+    font-size:0.9em;
 }
 
 /* MAIN - TRENDING */
 .trending-section{
     grid-area:trending;
+    display:grid;
+    grid-template-rows: 1.5em 1fr;
+    gap:1em;
+}
+.trending{
+    padding:2em;    
 }
 
 .trending-user{
     display:grid;
     grid-template-columns: 60px 1fr;
-    grid-template-rows: 2em 2em;
+    grid-template-rows: 2.5em 2em;
     grid-template-areas: 
     "icon   username"
     "icon   desc";
@@ -155,6 +238,7 @@ main{
 .trending-user .username{
     grid-area: username;
     align-self:start;
+    font-weight: bold;
 }
 .trending-user .user-desc{
     grid-area: desc;
